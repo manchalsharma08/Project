@@ -1,24 +1,32 @@
-variable "location" {
-  type    = string
-  default = "eastus"
+locals {
+  rg_map = {
+    rg1 = {
+      rg_name  = "Dev-RG-01"
+      location = "East US"
+    }
+  }
+  st_new = {
+    st1 = {
+      st_name              = "devstorageacct016786565875"
+      rg_name              = "Dev-RG-01"
+      location             = "East US"
+      
+    }
+  }
+  acr_name = {
+    acr1 = {
+      acr_name             = "manacr"
+      rg_name              = "Dev-RG-01"
+      location             = "East US"
+  }
+  
 }
-
-variable "rg_name" {
-  type    = string
-  default = "practice-rg"
+aks_new = {
+  aks1 = {
+    aks_name = "man-aks"
+    location = "East US"
+    rg_name  = "Dev-RG-01"
+    
+  }
 }
-
-variable "storage_name" {
-  type    = string
-  default = "practicestorage123"
-}
-
-variable "acr_name" {
-  type    = string
-  default = "practiceacr123"
-}
-
-variable "aks_name" {
-  type    = string
-  default = "practiceaks"
 }

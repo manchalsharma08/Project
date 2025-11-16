@@ -1,2 +1,4 @@
-variable "rg_name" {}
-variable "location" {}
+variable "rg" {
+    type = map(any)
+
+}

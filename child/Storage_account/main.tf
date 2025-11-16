@@ -1,11 +1,10 @@
 resource "azurerm_storage_account" "storage" {
-  name                     = var.storage_account_name
-  resource_group_name      = var.rg_name
-  location                 = var.location
+  for_each = var.st
+  name                     = each.value.st_name
+  resource_group_name      = each.value.rg_name
+  location                 = each.value.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
 
-output "storage_name" {
-  value = azurerm_storage_account.storage.name
-}
+

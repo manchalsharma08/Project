@@ -1,33 +1,24 @@
 # Resource Group
-module "rg" {
-  source   = "../child/rg"
-  rg_name  = var.rg_name
-  location = var.location
+module "rgm" {
+  source   = "../child/Resource_group"
+  rg = var.rg_map
 }
 
 # Storage Account
 module "storage" {
-  source                = "../child/storage"
-  rg_name               = module.rg.rg_name
-  location              = var.location
-  storage_account_name  = var.storage_name
+  source   = "../../child/storage_account"
+  st = var.st_new
+  
 }
 
 # Azure Container Registry
 module "acr" {
-  source      = "../child/acr"
-  rg_name     = module.rg.rg_name
-  location    = var.location
-  acr_name    = var.acr_name
-  sku         = "Basic"
+  source      = "../../child/ACR"
+  acr = var.acr_new
 }
 
 # AKS Cluster
 module "aks" {
-  source     = "../child/aks"
-  rg_name    = module.rg.rg_name
-  location   = var.location
-  aks_name   = var.aks_name
-  node_count = 1
-  vm_size    = "Standard_B2s"
+  source     = "../../child/AKS"
+  aks = var.aks_new
 }
